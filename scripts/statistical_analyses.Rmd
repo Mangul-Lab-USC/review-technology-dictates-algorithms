@@ -1,0 +1,215 @@
+---
+title: "Technology dictates algorithms:Recent developments in read alignment"
+author: "Brunilda Balliu"
+date: "12/8/2019"
+output:
+  html_document: default
+  word_document: default
+subtitle: Statistical analyses
+---
+
+```{r, echo=FALSE, warning=F, message=F}
+knitr::opts_chunk$set(echo = FALSE, eval = TRUE)
+library(dplyr)
+library(ggplot2)
+library(reshape)
+library(vcd)
+library(MASS)
+library(lme4)
+library(lmerTest)
+library(data.table)
+library(pander)
+```
+
+```{r}
+############################ Run Time Data
+runtime=read.csv(file = '../summary_data/runtime_comparison_with_tool_info.csv', header = T)
+runtime$year_of_pub=scale(runtime$year_of_pub)
+# remove the following variables as the have levels with 1 occurence: "spaced_seed", "fix_length_seed", "variable_length_seed"
+runtime=runtime %>% dplyr::select(-c("X", "Tools", "tools_lower", "aligner_lower", "average_runtime", 
+                                     "std_dev","seeds_spaced","seeds_fixed"))
+
+# Long format
+runtime_long=melt(data = runtime, id.vars = c("aligner",  "year_of_pub", "application", "index", "pairwise",
+                                              "seeds_chained", "year_split"))
+
+############################ Memory Data
+memory=read.csv(file = '../summary_data/memory_comparison_with_tool_info.csv', header = T)
+memory$year_of_pub=scale(memory$year_of_pub)
+memory=memory %>% dplyr::select(-c("X", "Tools", "tools_lower", "aligner_lower", "seeds_spaced", "seeds_fixed", 
+                                   "average_memory"))
+memory = memory %>% mutate(med_memory=apply(memory[,1:10], 1, median)) %>% mutate(sd_memory=sqrt(apply(memory[,1:10], 1, var)))
+
+memory_long=melt(data = memory, id.vars = c("aligner",  "year_of_pub", "application", "index", "pairwise",
+                                            "seeds_chained", "year_split", "med_memory", "sd_memory"))
+```
+
+Plot runtime and memory distribution for each aligner
+```{r, fig.width=10}
+ggplot(data = runtime_long, mapping = aes(x = factor(x = aligner, levels = as.character(runtime[order(runtime$year_of_pub), "aligner"])), y=value, fill=index)) + 
+  geom_boxplot() + theme_bw() + 
+  theme(legend.position = "top", axis.title.x = element_blank(), axis.text.x = element_text(color="black")) +
+  ylab("Run Time")
+
+ggplot(data = memory_long, mapping = aes(x = factor(x = aligner, levels = as.character(memory[order(memory$year_of_pub), "aligner"])), y=value, fill=index)) + 
+  geom_boxplot() + theme_bw() + ylab("Memory") + 
+  theme(legend.position = "top", axis.title.x = element_blank(), axis.text.x = element_text(color="black")) 
+
+```
+
+
+```{r, fig.width=10, eval=F}
+# Model under the null
+myglm0=glmer(formula = value ~ (1|variable), data = droplevels(runtime_long %>% filter(index!="Other Suffix") %>% filter(pairwise!="Other DP")), family = Gamma(link='identity'))
+# Model under the alternative
+myglm=glmer(formula = value ~ (1|variable)+ index, data = droplevels(runtime_long %>% filter(index!="Other Suffix") %>% filter(pairwise!="Other DP")), family = Gamma(link='identity'))
+mat=data.table(keep.rownames = T, summary(myglm)$coef, check.names = F) %>% mutate(Estimate=round(Estimate,2))  %>% mutate(`Std. Error`=round(`Std. Error`,2)) %>% mutate(`t value`=round(`t value`,2)) %>% mutate(`Pr(>|z|)`=format(`Pr(>|z|)`,scientific=T, digits=2))
+pander(mat)
+pander(anova(myglm0,myglm,test='LRT'))
+```
+Tools that use BWT-FM indexing are typically faster than hashing-based tools, adjusting for year of publication, chain of seeds, and type of pairwise alignment. 
+
+```{r, fig.width=10}
+data =droplevels(runtime_long %>% filter(index!="Other Suffix") %>% filter(pairwise!="Other DP")) %>% 
+                mutate(index=factor(index, levels = c("Hashing","BWT-FM" ))) %>% 
+                mutate(pairwise=factor(pairwise, levels = c("Needleman-Wunsch", "Hamming Distance", 
+                                                            "Non-DP Heuristic", "Smith-Waterman")))
+
+# Model under the null
+myglm0=glmer(formula = value ~ (1|variable) + year_of_pub + seeds_chained + pairwise , data = data, family = Gamma(link='log'))
+# Model under the alternative
+myglm = glmer(formula = value ~ (1|variable) + year_of_pub + seeds_chained + pairwise  + index, data = data, family = Gamma(link='log'))
+mat=data.table(keep.rownames = T, summary(myglm)$coef, check.names = F) %>% mutate(Estimate=round(Estimate,2))  %>% mutate(`Std. Error`=round(`Std. Error`,2)) %>% mutate(`t value`=round(`t value`,2)) %>% mutate(`Pr(>|z|)`=format(`Pr(>|z|)`,scientific=T, digits=2))
+pander(mat)
+pander(anova(myglm0,myglm,test='LRT'))
+```
+
+<!-- BTW-FM-based tools also required less computational resources, on average, compared to hashing-based tools before -->
+```{r, fig.width=10, eval=FALSE}
+# Model under the null
+myglm0=glm(formula = med_memory ~ 1, data = droplevels(memory %>% filter(index!="Other Suffix") %>% 
+                                                         filter(pairwise!="Other DP")) %>% 
+             mutate(index=factor(index, levels = c("Hashing","BWT-FM" ))) %>% 
+             mutate(pairwise=factor(pairwise, levels = c("Needleman-Wunsch", "Hamming Distance", 
+                                                            "Non-DP Heuristic", "Smith-Waterman"))), family = Gamma(link='log'))
+# Model under the alternative
+myglm= glm(formula = med_memory ~ 1 + index, data = droplevels(memory %>% filter(index!="Other Suffix") %>%
+                                                                 filter(pairwise!="Other DP")) %>% 
+             mutate(index=factor(index, levels = c("Hashing","BWT-FM" ))) %>% 
+             mutate(pairwise=factor(pairwise, levels = c("Needleman-Wunsch", "Hamming Distance", 
+                                                            "Non-DP Heuristic", "Smith-Waterman"))), family = Gamma(link='log'))
+mat=data.table(keep.rownames = T, summary(myglm)$coef, check.names = F) %>% mutate(Estimate=round(Estimate,2))  %>% mutate(`Std. Error`=round(`Std. Error`,2)) %>% mutate(`t value`=round(`t value`,2)) %>% mutate(`Pr(>|t|)`=format(`Pr(>|t|)`,scientific=T, digits=2))
+pander(mat)
+pander(anova(myglm0,myglm,test='LRT'))
+```
+
+BTW-FM-based tools also required less computational resources, compared to hashing-based tools adjusting for year of publication, chain of seeds, and type of pairwise alignment.
+
+```{r, fig.width=10}
+data=droplevels(memory %>% filter(index!="Other Suffix") %>% filter(pairwise!="Other DP")) %>% 
+             mutate(index=factor(index, levels = c("Hashing","BWT-FM" ))) %>% 
+             mutate(pairwise=factor(pairwise, levels = c("Needleman-Wunsch", "Hamming Distance", 
+                                                            "Non-DP Heuristic", "Smith-Waterman")))
+# Model under the null
+myglm0=glm(formula = med_memory ~ 1 + year_of_pub + seeds_chained + pairwise , data = data, family = Gamma(link='log'))
+# Model under the alternative
+myglm= glm(formula = med_memory ~ 1 + year_of_pub + seeds_chained + pairwise  + index  , data = data, family = Gamma(link='log'))
+mat=data.table(keep.rownames = T, summary(myglm)$coef, check.names = F) %>% mutate(Estimate=round(Estimate,2))  %>% mutate(`Std. Error`=round(`Std. Error`,2)) %>% mutate(`t value`=round(`t value`,2)) %>% mutate(`Pr(>|t|)`=format(`Pr(>|t|)`,scientific=T, digits=2))
+pander(mat)
+pander(anova(myglm0,myglm,test='LRT'))
+```
+
+Suffix array implemented by LAST required increased running time compared to BTW-FM-based tools
+```{r, fig.width=10}
+temp_data=droplevels(runtime_long %>% filter(aligner == "LAST" | index=="BWT-FM"))
+# Model under the null
+myglm0=glm(formula = value ~ 1 , data = temp_data, family = Gamma(link='log'))
+# Model under the alternative
+myglm= glm(formula = value ~ 1 + index , data = temp_data, family = Gamma(link='log'))
+mat=data.table(keep.rownames = T, summary(myglm)$coef, check.names = F) %>% mutate(Estimate=round(Estimate,2))  %>% mutate(`Std. Error`=round(`Std. Error`,2)) %>% mutate(`t value`=round(`t value`,2)) %>% mutate(`Pr(>|t|)`=format(`Pr(>|t|)`,scientific=T, digits=2))
+pander(mat)
+pander(anova(myglm0,myglm,test='LRT'))
+```
+
+and more computational resources compared to BTW-FM-based tools
+```{r, fig.width=10}
+temp_data=droplevels(memory_long %>% filter(aligner == "LAST" | index=="BWT-FM")) 
+# Model under the null
+myglm0=glm(formula = value ~ 1 , data = temp_data, family = Gamma(link='log'))
+# Model under the alternative
+myglm= glm(formula = value ~ 1 + index , data = temp_data, family = Gamma(link='log'))
+mat=data.table(keep.rownames = T, summary(myglm)$coef, check.names = F) %>% mutate(Estimate=round(Estimate,2))  %>% mutate(`Std. Error`=round(`Std. Error`,2)) %>% mutate(`t value`=round(`t value`,2)) %>% mutate(`Pr(>|t|)`=format(`Pr(>|t|)`,scientific=T, digits=2))
+pander(mat)
+pander(anova(myglm0,myglm,test='LRT'))
+```
+
+Despite the difference in performance driven by algorithms, we observed an overall improvement in computation time of read aligned across the years
+```{r, fig.width=10}
+# Model under the null
+myglm0=glmer(formula = value ~ (1|variable) + seeds_chained + pairwise + index, data = droplevels(runtime_long %>% filter(index!="Other Suffix") %>% filter(pairwise!="Other DP")), family = Gamma(link='log'))
+# Model under the alternative
+myglm= glmer(formula = value ~ (1|variable) + year_of_pub + seeds_chained + pairwise + index, data = droplevels(runtime_long %>% filter(index!="Other Suffix") %>% filter(pairwise!="Other DP")), family = Gamma(link='log'))
+mat=data.table(keep.rownames = T, summary(myglm)$coef, check.names = F) %>% mutate(Estimate=round(Estimate,2))  %>% mutate(`Std. Error`=round(`Std. Error`,2)) %>% mutate(`t value`=round(`t value`,2)) %>% mutate(`Pr(>|z|)`=format(`Pr(>|z|)`,scientific=T, digits=2))
+pander(mat)
+pander(anova(myglm0,myglm,test='LRT'))
+
+```
+
+as well as their memory requirements.
+```{r, fig.width=10}
+# Model under the null
+myglm0=glm(formula = med_memory ~ 1 + seeds_chained + pairwise + index, data = droplevels(memory %>% filter(index!="Other Suffix") %>% filter(pairwise!="Other DP")), family = Gamma(link='log'))
+# Model under the alternative
+myglm= glm(formula = med_memory ~ 1 + seeds_chained + pairwise  + index + year_of_pub, data = droplevels(memory %>% filter(index!="Other Suffix") %>% filter(pairwise!="Other DP")), family = Gamma(link='log'))
+mat=data.table(keep.rownames = T, summary(myglm)$coef, check.names = F) %>% mutate(Estimate=round(Estimate,2))  %>% mutate(`Std. Error`=round(`Std. Error`,2)) %>% mutate(`t value`=round(`t value`,2)) %>% mutate(`Pr(>|t|)`=format(`Pr(>|t|)`,scientific=T, digits=2))
+pander(mat)
+pander(anova(myglm0,myglm,test='LRT'))
+
+```
+
+
+We found that tools that use Needleman-Wunsch algorithm are typically faster than tools using other algorithms, including tools using Hamming distance.  
+```{r, fig.width=10}
+# Model under the null
+myglm0=glmer(formula = value ~ (1|variable) , data = droplevels(runtime_long %>% filter(index!="Other Suffix") %>% filter(pairwise!="Other DP")), family = Gamma(link='log'))
+# Model under the alternative
+myglm= glmer(formula = value ~ (1|variable) + pairwise, data = droplevels(runtime_long %>% filter(index!="Other Suffix") %>% filter(pairwise!="Other DP")), family = Gamma(link='log'))
+mat=data.table(keep.rownames = T, summary(myglm)$coef, check.names = F) %>% mutate(Estimate=round(Estimate,2))  %>% mutate(`Std. Error`=round(`Std. Error`,2)) %>% mutate(`t value`=round(`t value`,2)) %>% mutate(`Pr(>|z|)`=format(`Pr(>|z|)`,scientific=T, digits=2))
+pander(mat)
+pander(anova(myglm0,myglm,test='LRT'))
+
+
+# Model under the null
+myglm0=glmer(formula = value ~ (1|variable) + seeds_chained + year_of_pub + index, data = droplevels(runtime_long %>% filter(index!="Other Suffix") %>% filter(pairwise!="Other DP")), family = Gamma(link='log'))
+# Model under the alternative
+myglm= glmer(formula = value ~ (1|variable) + seeds_chained + year_of_pub + index + pairwise, data = droplevels(runtime_long %>% filter(index!="Other Suffix") %>% filter(pairwise!="Other DP")), family = Gamma(link='log'))
+mat=data.table(keep.rownames = T, summary(myglm)$coef, check.names = F) %>% mutate(Estimate=round(Estimate,2))  %>% mutate(`Std. Error`=round(`Std. Error`,2)) %>% mutate(`t value`=round(`t value`,2)) %>% mutate(`Pr(>|z|)`=format(`Pr(>|z|)`,scientific=T, digits=2))
+pander(mat)
+pander(anova(myglm0,myglm,test='LRT'))
+
+
+```
+
+
+We found significant differences  in amount of computational resources required  by read alignment tools using different pairwise alignment algorithms
+
+```{r, fig.width=10}
+# Model under the null
+myglm0=glm(formula = med_memory ~ 1 , data = droplevels(memory %>% filter(index!="Other Suffix") %>% filter(pairwise!="Other DP")), family = Gamma(link='log'))
+# Model under the alternative
+myglm= glm(formula = med_memory ~ 1 + pairwise   , data = droplevels(memory %>% filter(index!="Other Suffix") %>% filter(pairwise!="Other DP")), family = Gamma(link='log'))
+mat=data.table(keep.rownames = T, summary(myglm)$coef, check.names = F) %>% mutate(Estimate=round(Estimate,2))  %>% mutate(`Std. Error`=round(`Std. Error`,2)) %>% mutate(`t value`=round(`t value`,2)) %>% mutate(`Pr(>|t|)`=format(`Pr(>|t|)`,scientific=T, digits=2))
+pander(mat)
+pander(anova(myglm0,myglm,test='LRT'))
+
+
+# Model under the null
+myglm0=glm(formula = med_memory ~ 1 + seeds_chained + index + year_of_pub , data = droplevels(memory %>% filter(index!="Other Suffix") %>% filter(pairwise!="Other DP")), family = Gamma(link='log'))
+# Model under the alternative
+myglm= glm(formula = med_memory ~ 1 + seeds_chained + index + year_of_pub + pairwise, data = droplevels(memory %>% filter(index!="Other Suffix") %>% filter(pairwise!="Other DP")), family = Gamma(link='log'))
+mat=data.table(keep.rownames = T, summary(myglm)$coef, check.names = F) %>% mutate(Estimate=round(Estimate,2))  %>% mutate(`Std. Error`=round(`Std. Error`,2)) %>% mutate(`t value`=round(`t value`,2)) %>% mutate(`Pr(>|t|)`=format(`Pr(>|t|)`,scientific=T, digits=2))
+pander(mat)
+pander(anova(myglm0,myglm,test='LRT'))
+
+
+```
