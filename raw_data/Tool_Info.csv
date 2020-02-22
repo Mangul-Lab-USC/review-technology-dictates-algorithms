@@ -84,7 +84,7 @@ ID,aligner,url,year_of_pub,application,indexing,fix_length_seed,spaced_seed,seed
 98,GraphMap2,https://github.com/lbcb-sci/graphmap2,2019,DNA/RNA-Seq,hashing,Y,Y,Y,Semi-Global,"9,000",Graphmap2 - splice-aware RNA-seq mapper for long reads,Marić et al. ‎2019,Long,1,N,
 89,minimap2,https://github.com/lh3/minimap2,2018,DNA/RNA-Seq,hashing,Y,N,Y,NW,"11,628",Minimap2: pairwise alignment for nucleotide sequences,Li et al. ‎2018,Short & Long,394,N,
 70,Subread,http://subread.sourceforge.net/,2013,DNA/RNA-Seq,hashing,Y,Y,Y,SW,202,"The Subread aligner: fast, accurate and scalable read mapping by seed-and-vote.",Liao et al. 2013 ,Short,1005,N,
-101,FASTA,https://fasta.bioch.virginia.edu/fasta_www2/fasta_list2.shtml,1988,DNA/RNA-Seq,hashing,Y,N,Y,SW & NW,"1,500",Improved tools for biological sequence comparison,Pearson et al. 1988,Long,13754,N,
+101,FASTA,https://fasta.bioch.virginia.edu/fasta_www2/fasta_list2.shtml,1988,DNA/Protein,hashing,Y,N,Y,SW & NW,"1,500",Improved tools for biological sequence comparison,Pearson et al. 1988,Long,13754,N,
 93,deSALT,https://github.com/hitbc/deSALT,2019,RNA-seq,hashing,Y,N,Y,SW,"8,000",deSALT: fast and accurate long transcriptomic read alignment with de Bruijn graph-based index,Liu et al. 2019,Long,0,N,
 88,DART,https://github.com/hsinnan75/DART,2017,RNA-Seq,BWT-FM,N,N,Y,NW,251,DART: a fast and accurate RNA-seq mapper with a partitioning strategy,Lin et al. 2017,Short,4,N,
 79,ContextMap 2,http://www.bio.ifi.lmu.de/ContextMap,2015,RNA-Seq,BWT-FM,Y,N,Y,SW & NW,76,ContextMap 2: fast and accurate context-based RNA-seq mapping,Bonfert et al. ‎2015,Ultra-short,31,Y,"Bowtie, Bowtie2, or BWA"
