@@ -1,0 +1,108 @@
+aligner,url,year_of_pub,application,indexing,fix_length_seed,spaced_seed,seed_chaining,pairwise_alignment,wrapper,max_read_length_tested
+FASTA,https://fasta.bioch.virginia.edu/fasta_www2/fasta_list2.shtml,1988,DNA/Protein,hashing,Y,N,Y,SW and NW,N,1500
+BLAST,https://blast.ncbi.nlm.nih.gov/Blast.cgi,1990,DNA/Protein,hashing,Y,N,Y,Non-DP Heuristic,N,73360
+Gapped BLAST,https://blast.ncbi.nlm.nih.gov/Blast.cgi,1997,DNA/Protein,hashing,Y,N,Y,SW,N,246
+SSAHA,https://www.sanger.ac.uk/science/tools/ssaha,2001,DNA,hashing,Y,N,N,NW,N,500
+PatternHunter,https://www.bioinfor.com/,2002,DNA,hashing,Y,Y,Y,Non-DP heuristic,N,500
+BLAT,https://genome.ucsc.edu/cgi-bin/hgBlat,2002,DNA,hashing,Y,N,Y,Non-DP heuristic,N,500
+BLASTZ,https://www.bx.psu.edu/miller_lab/,2003,DNA,hashing,Y,N,N,SW,Y,3000
+C4,https://github.com/nathanweeks/exonerate,2005,DNA/Protein,hashing,Y,N,Y,Sparse DP,N,N/A
+GMAP,https://github.com/juliangehring/GMAP-GSNAP,2005,DNA,hashing,N,N,Y,NW,N,N/A
+BWT-SW,https://github.com/mruffalo/bwt-sw,2008,DNA,BWT,Y,N,N,SW,N,2000
+MAQ,http://maq.sourceforge.net/maq-man.shtml,2008,DNA,hashing,Y,Y,N,SW,N,63
+RMAP,https://github.com/smithlabcode/rmap,2008,DNA,hashing,Y,N,N,HD,N,36
+SOAP,https://github.com/ShujiaHuang/SOAPaligner,2008,DNA,hashing,Y,N,N,Non-DP heuristic,N,50
+SOCS,http://socs.biology.gatech.edu/,2008,DNA,hashing,Y,N,N,Rabin-Karp Algorithm,N,35
+SeqMap,http://www-personal.umich.edu/~jianghui/seqmap/,2008,DNA,hashing,Y,N,N,Non-DP Heuristic,N,30
+ZOOM,http://www.bioinfor.com/zoom-1-3-gui-release-next-gen-seq/,2008,DNA,hashing,Y,Y,N,SW,N,36
+QPALMA,http://www.raetschlab.org/suppl/qpalma,2008,RNA-Seq,suffix array,Y,N,Y,SW,Y,36
+BRAT,http://compbio.cs.ucr.edu/brat/,2009,BS-Seq,hashing,Y,N,N,HD,N,26
+BSMAP,https://github.com/genome-vendor/bsmap,2009,BS-Seq,hashing,Y,N,N,HD,N,32
+BFAST,https://github.com/nh13/BFAST/,2009,DNA,hashing,N,Y,N,SW,N,55
+BWA,https://github.com/lh3/bwa,2009,DNA,BWT-FM,N,N,N,Semi-Global,N,125
+Bowtie,http://bowtie-bio.sourceforge.net/manual.shtml,2009,DNA,BWT-FM,Y,N,N,HD,N,76
+CloudBurst,https://sourceforge.net/projects/cloudburst-bio/,2009,DNA,hashing,Y,N,N,Landau-Vishkin,N,36
+GNUMAP,https://github.com/byucsl/gnumap,2009,DNA,hashing,Y,N,Y,NW,N,36
+GenomeMapper,http://1001genomes.org/software/genomemapper_singleref.html,2009,DNA,hashing,Y,N,Y,NW,N,200
+MOM,https://github.com/hugheaves/MOM,2009,DNA,hashing,Y,N,N,HD,N,40
+PASS,http://pass.cribi.unipd.it/cgi-bin/pass.pl,2009,DNA,hashing,Y,N,Y,NW,N,32
+PerM,https://code.google.com/archive/p/perm/downloads,2009,DNA,hashing,Y,Y,N,HD,N,47
+RazerS,https://github.com/seqan/seqan/tree/master/apps/razers,2009,DNA,hashing,Y,Y,Y,Myers Bit-Vector,N,76
+SHRiMP,http://compbio.cs.toronto.edu/shrimp/,2009,DNA,hashing,N,N,N,SW,N,35
+SOAP2,https://github.com/ShujiaHuang/SOAPaligner,2009,DNA,BWT-FM,Y,N,N,SW,N,44
+Slider,http://www.bcgsc.ca/platform/bioinfo/software/slider,2009,DNA,hashing,Y,N,N,HD,N,36
+segemehl,https://www.bioinf.uni-leipzig.de/Software/segemehl/,2009,DNA,suffix array,N,N,Y,SW,N,35
+TopHat,https://ccb.jhu.edu/software/tophat/index.shtml,2009,RNA-Seq,BWT-FM,Y,N,N,HD,Y,42
+BS-Seeker,http://pellegrini-legacy.mcdb.ucla.edu/bs_seeker/BS_Seeker.html,2010,BS-Seq,BWT-FM,Y,N,N,HD,Y,36
+BWA-SW,https://github.com/lh3/bwa,2010,DNA,BWT-FM,N,N,N,SW,N,10000
+GASSST,http://www.irisa.fr/symbiose/projects/gassst/,2010,DNA,hashing,Y,Y,Y,Semi-Global,N,500
+GSNAP,https://github.com/juliangehring/GMAP-GSNAP,2010,DNA,hashing,Y,N,Y,Non-DP Heuristic,N,100
+SMALT,https://github.com/rcallahan/smalt,2010,DNA,hashing,Y,N,Y,SW,N,150
+Slider II,http://www.bcgsc.ca/platform/bioinfo/software/SliderII,2010,DNA,hashing,Y,N,N,HD,Y,42
+VMATCH,http://www.vmatch.de/,2010,DNA,suffix array,Y,N,Y,SW,Y,N/A
+mrsFAST,https://github.com/sfu-compbio/mrsfast,2010,DNA,hashing,Y,N,N,HD,N,100
+MapSplice,https://github.com/LiuBioinfo/MapSplice,2010,RNA-Seq,BWT-FM,Y,N,N,HD,Y,100
+MicroRazerS,https://github.com/seqan/seqan/tree/master/apps/micro_razers,2010,RNA-Seq,hashing,Y,N,Y,HD,N,36
+SpliceMap,http://web.stanford.edu/group/wonglab/SpliceMap/,2010,RNA-Seq,hashing,Y,N,N,HD,Y,50
+Supersplat,http://mocklerlab.org/tools/1/manual,2010,RNA-Seq,hashing,N,N,N,NA,N,36
+Bismark,https://github.com/FelixKrueger/Bismark,2011,BS-Seq,BWT-FM,Y,N,Y,SW & NW,Y,50
+LAST,http://last.cbrc.jp/,2011,DNA/BS-Seq/protein/RNA,suffix array,N,Y,N,SW & NW,N,105
+DynMap,https://dl.acm.org/citation.cfm?id=2147845&dl=ACM&coll=DL,2011,DNA,hashing,Y,N,N,NW,N,52
+SHRiMP2,http://compbio.cs.toronto.edu/shrimp/,2011,DNA,hashing,Y,Y,Y,SW,N,75
+SNAP,http://snap.cs.berkeley.edu/,2011,DNA,hashing,Y,N,N,NW,N,10000
+Stampy,https://www.well.ox.ac.uk/project-stampy,2011,DNA,hashing,Y,N,N,NW,N,4500 
+TMAP,https://github.com/iontorrent/TS/tree/master/Analysis/TMAP,2011,DNA,BWT-FM,N,N,Y,SW,N,N/A
+X-Mate,http://grimmond.imb.uq.edu.au/X-MATE/,2011,DNA,hashing,N,N,N,Non-DP Heuristic,N,50
+SOAPSplice,http://soap.genomics.org.cn/soapsplice.html,2011,RNA-Seq,BWT-FM,Y,N,N,Non-DP Heuristic,N,150
+BRAT-BW,http://compbio.cs.ucr.edu/brat/,2012,BS-Seq,BWT-FM,N,N,N,HD,N,62
+BLASR,https://github.com/mchaisso/blasr/,2012,DNA,suffix array,Y,N,Y,NW,N,8000
+Batmis,https://code.google.com/archive/p/batmis/,2012,DNA,BWT-ST,Y,N,N,HD,N,100
+Bowtie2,http://bowtie-bio.sourceforge.net/bowtie2,2012,DNA,BWT-FM,Y,N,Y,SW & NW,N,400
+GEM,https://github.com/smarco/gem3-mapper,2012,DNA,BWT-FM,N,N,Y,SW & NW,N,150
+RazerS3,https://github.com/seqan/seqan/tree/master/apps/razers3,2012,DNA,hashing,Y,Y,Y,Banded Myers Bit Vector,N,800
+SeqAlto,https://web.stanford.edu/group/wonglab/seqalto/,2012,DNA,hashing,Y,N,N,NW,N,200
+SplazerS,https://github.com/seqan/seqan/blob/master/apps/splazers/README,2012,DNA,hashing,Y,N,Y,Banded Myers Bit Vector,N,150
+WHAM,http://pages.cs.wisc.edu/~jignesh/wham/,2012,DNA,hashing,Y,N,N,NW,N,74
+YAHA,https://github.com/GregoryFaust/yaha,2012,DNA,hashing,Y,N,Y,SW,N,10000
+OSA,http://www.arrayserver.com/wiki/index.php?title=OSA,2012,RNA-Seq,hashing,Y,N,N,NA,N,100
+Passion,https://trac.nbic.nl/passion/,2012,RNA-Seq,hashing,Y,N,Y,SW,Y,75
+BS-Seeker2,https://github.com/BSSeeker/BSseeker2,2013,BS-Seq,BWT-FM,Y,N,Y,SW & NW,Y,250
+Subread,http://subread.sourceforge.net/,2013,DNA/RNA-Seq,hashing,Y,Y,Y,SW,N,202
+BWA-MEM,https://github.com/lh3/bwa,2013,DNA,BWT-FM,N,N,Y,SW & NW,N,650
+Masai,http://www.seqan.de/projects/masai,2013,DNA,suffix tree,N,N,Y,Banded Myers Bit Vector,N,150
+NextGenMap,http://cibiv.github.io/NextGenMap/,2013,DNA,hashing,Y,N,N,SW & NW,N,250
+SRmapper,http://www.umsl.edu/~wongch/software.html,2013,DNA,hashing,Y,N,N,HD,N,100
+mrFAST,https://github.com/BilkentCompGen/mrfast,2013,DNA,hashing,Y,N,N,Semi-Global,N,180
+CRAC,http://crac.gforge.inria.fr/,2013,RNA-Seq,BWT-FM,Y,N,N,Non-DP Heuristic,N,200
+STAR,https://github.com/alexdobin/STAR,2013,RNA-Seq,suffix array,N,N,Y,SW,N,5000
+TopHat2,https://ccb.jhu.edu/software/tophat/index.shtml,2013,RNA-Seq,BWT-FM,Y,N,Y,SW & NW,Y,101
+Subjunc,http://subread.sourceforge.net/,2013,RNA-seq,hashing,Y,Y,Y,NW,N,202
+BWA-PSSM,http://bwa-pssm.binf.ku.dk/,2014,DNA,BWT-FM,Y,N,N,SW,Y,100
+CUSHAW3,http://cushaw3.sourceforge.net/homepage.htm#latest,2014,DNA,BWT-FM,Y,N,Y,SW & Semi-Global,N,100
+Hobbes2,https://hobbes.ics.uci.edu/download.shtml,2014,DNA,hashing,Y,N,Y,Banded Myers Bit Vector,N,100
+MOSAIK,https://github.com/wanpinglee/MOSAIK,2014,DNA,hashing,Y,N,N,SW,N,100
+hpg-Aligner,https://github.com/opencb/hpg-aligner,2014,DNA,suffix array,N,N,Y,SW,N,5000
+mrsFAST-Ultra,https://github.com/sfu-compbio/mrsfast,2014,DNA,hashing,Y,N,N,HD,N,100
+JAGuaR,http://www.bcgsc.ca/platform/bioinfo/software/jaguar,2014,RNA-Seq,BWT-FM,Y,N,N,SW,Y,100
+ContextMap 2,http://www.bio.ifi.lmu.de/ContextMap,2015,RNA-Seq,BWT-FM,Y,N,Y,SW & NW,Y,76
+HISAT,http://www.ccb.jhu.edu/software/hisat/index.shtml,2015,RNA-Seq,BWT-FM,Y,N,N,Non-DP Heuristic,N,100
+ERNE 2,http://erne.sourceforge.net/,2016,DNA/BS-Seq,BWT-FM + hashing,Y,N,N,HD,N,100
+GraphMap,https://github.com/isovic/graphmap,2016,DNA,hashing,Y,Y,Y,Semi-global,N,9000
+NanoBLASTer,https://github.com/ruhulsbu/NanoBLASTer,2016,DNA,hashing,Y,N,Y,NW,N,7040
+minimap,https://github.com/lh3/minimap,2016,DNA,hashing,Y,N,N,N/A,N,13000
+rHAT,https://github.com/dfguan/rHAT,2016,DNA,hashing,Y,N,Y,SW,N,8000
+KART,https://github.com/hsinnan75/KART,2017,DNA,BWT-FM,N,N,Y,NW,N,7118
+LAMSA,https://github.com/hitbc/LAMSA,2017,DNA,BWT-FM + hashing,Y,N,Y,Sparse DP,Y,100000
+DART,https://github.com/hsinnan75/DART,2017,RNA-Seq,BWT-FM,N,N,Y,NW,N,251
+minimap2,https://github.com/lh3/minimap2,2018,DNA/RNA-Seq,hashing,Y,N,Y,NW,N,11628
+DREAM-Yara,https://gitlab.com/pirovc/dream_yara/,2018,DNA,BWT-FM,Y,N,N,Banded Myers Bit Vector,Y,150
+MUMmer4,https://github.com/mummer4/mummer,2018,DNA,suffix array,Y,N,Y,SW,Y,7821
+NGMLR,https://github.com/philres/ngmlr,2018,DNA,hashing,Y,N,Y,SW,N,50000
+lordFAST,https://github.com/vpc-ccg/lordfast,2018,DNA,BWT-FM + hashing,N,N,Y,SW & NW,N,35489
+BatMeth2,https://github.com/GuoliangLi-HZAU/BatMeth2/,2019,BS-Seq,BWT-FM,Y,N,Y,SW & NW,N,125
+GraphMap2,https://github.com/lbcb-sci/graphmap2,2019,DNA/RNA-Seq,hashing,Y,Y,Y,Semi-global,N,9000
+Magic-BLAST,https://github.com/ncbi/magicblast,2019,DNA/RNA-Seq,hashing,Y,N,N,Non-DP Heuristic,N,90000
+BWA-MEM2,https://github.com/bwa-mem2/bwa-mem2,2019,DNA,BWT-FM,N,N,Y,SW,N,650
+HISAT2,https://ccb.jhu.edu/software/hisat2/index.shtml,2019,DNA,BWT-FM,Y,N,N,Non-DP Heuristic,N,100
+deSALT,https://github.com/hitbc/deSALT,2019,RNA-seq,hashing,Y,N,Y,SW,N,8000
+conLSH,https://www.dropbox.com/s/3jcu4i240kyu2tc/source%20code%20conLSH_bio.tar.gz?dl=0,2020,DNA,hashing,Y,N,Y,Sparse DP,N,8000

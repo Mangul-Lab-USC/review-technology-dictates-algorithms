@@ -1,4 +1,5 @@
 indexing,seed_type,pairwise_alignment,count
+BWT,YNN,SW,1
 BWT-FM,NNN,HD,1
 BWT-FM,NNN,SW,1
 BWT-FM,NNN,Semi-Global,1
@@ -8,39 +9,43 @@ BWT-FM,NNY,SW & NW,2
 BWT-FM,YNN,Banded Myers Bit Vector,1
 BWT-FM,YNN,HD,4
 BWT-FM,YNN,Non-DP Heuristic,4
-BWT-FM,YNN,SW,4
+BWT-FM,YNN,SW,3
 BWT-FM,YNY,SW & NW,6
 BWT-FM,YNY,SW & Semi-Global,1
 BWT-FM + hashing,NNY,SW & NW,1
 BWT-FM + hashing,YNN,HD,1
+BWT-FM + hashing,YNY,Sparse DP,1
 BWT-ST,YNN,HD,1
 hashing,NNN,Non-DP Heuristic,1
 hashing,NNN,SW,1
 hashing,NNY,NW,1
 hashing,NYN,SW,1
-hashing,YNN,HD,8
+hashing,YNN,HD,10
 hashing,YNN,Landau-Vishkin,1
 hashing,YNN,NW,6
-hashing,YNN,Non-DP Heuristic,3
+hashing,YNN,Non-DP Heuristic,2
+hashing,YNN,Non-DP heuristic,1
 hashing,YNN,Rabin-Karp Algorithm,1
 hashing,YNN,SW,2
 hashing,YNN,SW & NW,1
 hashing,YNN,Semi-Global,1
-hashing,YNN,Sparse DP,2
 hashing,YNY,Banded Myers Bit Vector,2
 hashing,YNY,HD,1
 hashing,YNY,NW,5
-hashing,YNY,Non-DP Heuristic,3
+hashing,YNY,Non-DP Heuristic,2
+hashing,YNY,Non-DP heuristic,1
 hashing,YNY,SW,7
-hashing,YNY,SW & NW,1
-hashing,YNY,Sparse DP,1
+hashing,YNY,SW and NW,1
+hashing,YNY,Sparse DP,2
 hashing,YYN,HD,1
 hashing,YYN,SW,2
 hashing,YYY,Banded Myers Bit Vector,1
 hashing,YYY,Myers Bit-Vector,1
 hashing,YYY,NW,1
+hashing,YYY,Non-DP heuristic,1
 hashing,YYY,SW,2
-hashing,YYY,Semi-Global,3
+hashing,YYY,Semi-Global,1
+hashing,YYY,Semi-global,2
 suffix array,NNY,SW,3
 suffix array,NYN,SW & NW,1
 suffix array,YNY,NW,1

@@ -74,7 +74,7 @@ ID,aligner,url,year_of_pub,application,indexing,fix_length_seed,spaced_seed,seed
 4,C4,https://github.com/nathanweeks/exonerate,2005,DNA,hashing,Y,N,Y,Sparse DP,N/A,Automated generation of heuristics for biological sequence comparison,Slater et al. ‎2005,Ultra-short,1283,N,
 5,GMAP,https://github.com/juliangehring/GMAP-GSNAP,2005,DNA,hashing,N,N,Y,NW,N/A,GMAP: a genomic mapping and alignment program for mRNA and EST sequences,Wu et al. ‎2005,Ultra-short,1269,N,
 3,BLASTZ,https://www.bx.psu.edu/miller_lab/,2003,DNA,hashing,Y,N,N,SW,"3,000",Human–Mouse Alignments with BLASTZ,Schwartz et al. ‎2003,Long,1374,Y,BlastZ
-2,Blat,https://genome.ucsc.edu/cgi-bin/hgBlat,2002,DNA,hashing,Y,N,Y,Non-DP Heuristic,500,BLAT—the BLAST-like alignment tool,Kent et al. ‎2002  ,Short,7292,N,
+2,BLAT,https://genome.ucsc.edu/cgi-bin/hgBlat,2002,DNA,hashing,Y,N,Y,Non-DP Heuristic,500,BLAT—the BLAST-like alignment tool,Kent et al. ‎2002  ,Short,7292,N,
 1,SSAHA,https://www.sanger.ac.uk/science/tools/ssaha,2001,DNA,hashing,Y,N,N,NW,500,SSAHA: a fast search method for large DNA databases.,Ning et al. ‎2001,Short,1120,N,
 83,ERNE 2,http://erne.sourceforge.net/,2016,DNA/BS-Seq,BWT-FM + hashing,Y,N,N,HD,100,"Fast, accurate, and lightweight analysis of BS-treated reads with ERNE 2",Prezza et al. ‎2016,Short,9,N,
 50,LAST,http://last.cbrc.jp/,2011,DNA/BS-Seq/protein/RNA,suffix array,N,Y,N,SW & NW,105,Adaptive seeds tame genomic sequence comparison.,Kiełbasa et al. ‎2011,Short & Long,565,N,
