@@ -52,7 +52,7 @@ Below is bibtex format for citation.
 ```
 
 ##  <a name="license"></a>License
-This repository is under MIT license. For more information, please read our [LICENSE.md](./LICENSE) file.
+This repository is under MIT license. For more information, please read our [LICENSE](./LICENSE) file.
 
 
 ##  <a name="contact"></a>Contact
