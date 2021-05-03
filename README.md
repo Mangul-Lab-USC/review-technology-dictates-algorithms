@@ -32,6 +32,22 @@ review-technology-dictates-algorithms-master
 ##  <a name="datasets"></a>Datasets
 We used 10 WGS datasets with the following accession numbers: ERR009309,ERR013127,ERR013138,ERR045708,ERR050158,ERR162843,ERR181410,ERR183377,SRR061640,SRR360549
 
+##  <a name="reproducing-results"></a>Reproducing results
+1. Install Jupyter Notebook ```https://www.datacamp.com/community/tutorials/installing-jupyter-notebook```
+2. Install some dependencies
+```
+pip install wheel
+pip install pandas
+python -m pip install seaborn
+pip install ipysankeywidget
+pip install floweaver
+```
+3. Run Jupyter Notebook and you will have a new tab in your web browser
+```
+jupyter notebook
+```
+4. Locate review-technology-dictates-algorithms-master/notebooks in your Jupyter Notebook session and make sure you have a trusted session (by clicking on "Not trusted" on the right top corner of the session page) so that you can save the figures into your machine.
+5. Run the python code used to generate any of the subject figures by opening the code in the Notebook session and run the code using: "Cell --> Run All"
 
 
 ## <a name="cite"></a>How-to-cite-this-study?
