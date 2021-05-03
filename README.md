@@ -46,7 +46,7 @@ pip install floweaver
 ```
 jupyter notebook
 ```
-4. Locate review-technology-dictates-algorithms-master/notebooks in your Jupyter Notebook session and make sure you have a trusted session (by clicking on "Not trusted" on the right top corner of the session page) so that you can save the figures into your machine.
+4. Navigate to review-technology-dictates-algorithms-master/notebooks in your Jupyter Notebook session and make sure you have a trusted session (by clicking on "Not trusted" on the right top corner of the session page) so that you can save the figures into your machine.
 5. Run the python code used to generate any of the subject figures by opening the code in the Notebook session and run the code using: "Cell --> Run All"
 
 
