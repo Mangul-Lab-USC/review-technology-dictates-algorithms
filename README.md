@@ -25,22 +25,29 @@ review-technology-dictates-algorithms-master
 ├───6. summary_data
 ```            
 
-1. In the "Datasets" directory, you will find all figures used in our study.
-2. 
+1. In the "figures" directory, you will find all figures used in our study.
+2. In the "multi_panel" directory, you will find all figures used in our study.
+3. In the "notebooks" directory, you will find all python scripts used to produce Figures 2, 3, 4, and supplementary figures.
+4. In the "raw_data" directory, you will find the raw data used for generating the figures and running the python scripts in "notebooks" directory.
+5. In the "scripts" directory, you will find R codes used for the statistical analyses.
+6. In the "summary_data" directory, you will find csv files for the collected data about all studied read alignment tools from 1988 until 2021.
 
 
 ##  <a name="datasets"></a>Datasets
 We used 10 WGS datasets with the following accession numbers: ERR009309,ERR013127,ERR013138,ERR045708,ERR050158,ERR162843,ERR181410,ERR183377,SRR061640,SRR360549
 
 ##  <a name="reproducing-results"></a>Reproducing results
-1. Install Jupyter Notebook ```https://www.datacamp.com/community/tutorials/installing-jupyter-notebook```
+1. Install Jupyter Notebook 
+```
+pip3 install jupyter
+```
 2. Install some dependencies
 ```
-pip install wheel
-pip install pandas
-python -m pip install seaborn
-pip install ipysankeywidget
-pip install floweaver
+pip3 install wheel
+pip3 install pandas
+pip3 install seaborn
+pip3 install ipysankeywidget
+pip3 install floweaver
 ```
 3. Run Jupyter Notebook and you will have a new tab in your web browser
 ```
