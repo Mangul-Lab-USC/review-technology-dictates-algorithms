@@ -34,7 +34,7 @@ review-technology-dictates-algorithms-master
 
 
 ##  <a name="datasets"></a>Datasets
-We used 10 WGS datasets with the following accession numbers: ERR009309,ERR013127,ERR013138,ERR045708,ERR050158,ERR162843,ERR181410,ERR183377,SRR061640,SRR360549
+We used 10 WGS datasets with the following accession numbers: ERR009309, ERR013127, ERR013138, ERR045708, ERR050158, ERR162843, ERR181410, ERR183377, SRR061640, SRR360549
 
 ##  <a name="reproducing-results"></a>Reproducing results
 1. Install Jupyter Notebook 
